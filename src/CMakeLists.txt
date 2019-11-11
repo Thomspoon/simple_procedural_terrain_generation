@@ -1,0 +1,1 @@
+add_executable(procedual_terrain_generation main.cpp)
