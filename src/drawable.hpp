@@ -119,7 +119,7 @@ struct VertexBufferObject {
     void update_data(const std::vector<Type> &data) const {
         void *ptr = GL_CHECK(glMapBuffer(static_cast<GLenum>(type), GL_WRITE_ONLY));
         memcpy(ptr, &data[0], sizeof(Type) * data.size());
-        glUnmapBuffer(glMapBuffer(static_cast<GLenum>(type));
+        GL_CHECK(glUnmapBuffer(static_cast<GLenum>(type)));
     }
 
     void unbind() const {

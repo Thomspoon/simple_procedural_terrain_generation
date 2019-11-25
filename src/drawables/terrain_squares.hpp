@@ -32,6 +32,7 @@ struct GenerationSettings {
     bool operator==(const GenerationSettings& other) {
         const auto epsilon = 0.001f;
         return seed == other.seed &&
+               fabs(height_scale - other.height_scale) < epsilon &&
                fabs(scale - other.scale) < epsilon &&
                octaves == other.octaves &&
                fabs(persistence - other.persistence) < epsilon &&

@@ -18,14 +18,16 @@
 constexpr auto WINDOW_WIDTH = 1440;
 constexpr auto WINDOW_HEIGHT = 900;
 
+constexpr auto GRID_SIZE = 100;
+
 auto camera_settings = CameraSettings(CameraDefault::ZOOM, WINDOW_WIDTH / WINDOW_HEIGHT, 0.1, 1000.0);
-auto camera = Camera<Perspective>(camera_settings, glm::vec3(0.0f, 20.0f, 3.0f), glm::vec3(0.0, 1.0, 0.0), 45.0, -10.0);
+auto camera = Camera<Perspective>(camera_settings, glm::vec3(-50.0f, 60.0f, GRID_SIZE / 2.0f), glm::vec3(0.0, 1.0, 0.0), 0.0, -35.0);
 
 Window window(WINDOW_WIDTH, WINDOW_HEIGHT, "Procedural Terrain Generation");
 
-constexpr auto GRID_SIZE = 100;
-
 bool focus = true;
+
+GenerationSettings settings;
 
 // custom callback 
 void process_input(float delta_time)
@@ -59,6 +61,22 @@ void process_input(float delta_time)
 
     if(window.get_key(Key::KEY_E) == KeyState::PRESSED) {
         window.polygon_mode(PolygonMode::LINE);
+    }
+
+    if(window.get_key(Key::KEY_LEFT) == KeyState::PRESSED) {
+        settings.offset.x -= 0.01;
+    }
+
+    if(window.get_key(Key::KEY_RIGHT) == KeyState::PRESSED) {
+        settings.offset.x += 0.01;
+    }
+
+    if(window.get_key(Key::KEY_UP) == KeyState::PRESSED) {
+        settings.offset.y += 0.01;
+    }
+
+    if(window.get_key(Key::KEY_DOWN) == KeyState::PRESSED) {
+        settings.offset.y -= 0.01;
     }
 
 }
@@ -121,8 +139,6 @@ int main() try {
 
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-
-    GenerationSettings settings;
     GenerationSettings last_settings;
 
     while (!window.should_close())
@@ -148,12 +164,13 @@ int main() try {
         ImGui::Text("Edit Configuration Parameters");
 
         ImGui::SliderInt("seed", &settings.seed, 0, std::numeric_limits<int>::max() / 10);
-        ImGui::SliderFloat("scale", &settings.scale, 0.0f, 10.0f);
-        ImGui::SliderInt("octaves", &settings.octaves, 0, 10);
-        ImGui::SliderFloat("persistance", &settings.persistence, 0.0f, 5.0f);
-        ImGui::SliderFloat("Lacunarity", &settings.lacunarity, 0.0f, 10.0f);
-        ImGui::SliderFloat("X Offset", &settings.offset.x, -1000.0f, 1000.0f);
-        ImGui::SliderFloat("Y Offset", &settings.offset.y, -1000.0f, 1000.0f);
+        ImGui::SliderFloat("height", &settings.height_scale, 1.0f, 100.0f);
+        ImGui::SliderFloat("scale", &settings.scale, 1.0f, 100.0f);
+        ImGui::SliderInt("octaves", &settings.octaves, 1, 10);
+        ImGui::SliderFloat("persistance", &settings.persistence, 0.1f, 2.5f);
+        ImGui::SliderFloat("Lacunarity", &settings.lacunarity, 0.1f, 2.5f);
+        ImGui::SliderFloat("X Offset", &settings.offset.x, -100.0f, 100.0f);
+        ImGui::SliderFloat("Y Offset", &settings.offset.y, -100.0f, 100.0f);
 
         ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
         ImGui::End();
