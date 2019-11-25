@@ -12,13 +12,13 @@ To build from source the following are required:
 First clone the repository:
 
 ```
-git clone https://github.com/Thomspoon/procedural_terrain_generation.git
+git clone https://github.com/Thomspoon/simple_procedural_terrain_generation.git
 ```
 Next, pull in the submodules
 
 ```
 cd procedural_terrain_generation
-git submodule update --recursive
+git submodule update --init --recursive
 ```
 Finally, create a build folder and run cmake (with whatever compiler you want as long as it supports C++17):
 
