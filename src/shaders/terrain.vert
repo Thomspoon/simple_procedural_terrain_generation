@@ -16,7 +16,7 @@ static constexpr std::string_view TerrainVert = R"(
 
     out vec3 fragment_pos;
     out vec3 surface_normal;
-    flat out vec3 fragment_color;
+    out vec3 fragment_color;
     //out vec2 tex_coord;
 
     uniform mat4 model;

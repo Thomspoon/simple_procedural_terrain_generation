@@ -5,6 +5,8 @@
 #include <random>
 #include <tuple>
 
+#include "glm/glm.hpp"
+
 #include "../drawable.hpp"
 #include "../perlin.hpp"
 
@@ -163,7 +165,7 @@ private:
         auto va_index = 0;
         for(auto x = 0; x < grid_size; x++) {
             for(auto z = 0; z < grid_size; z++) {
-                auto height = (height_map[va_index] > 0.3 ? height_map[va_index] : 0.3f);
+                auto height = (height_map[va_index] > 0.35 ? height_map[va_index] : 0.35f);
                 terrain_attributes[va_index].position = glm::vec3(x, height * settings.height_scale, z);
                 va_index++;
             }
@@ -271,6 +273,7 @@ private:
     {
 		std::vector<float> noise_map(grid_size * grid_size);
 
+        // Generate octave noise
         std::mt19937 gen(settings.seed);
         std::uniform_int_distribution<> dis(-100000, 100000);
 		std::vector<glm::vec2> octave_offsets(settings.octaves);

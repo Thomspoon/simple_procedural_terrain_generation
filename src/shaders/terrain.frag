@@ -11,7 +11,7 @@ static constexpr std::string_view TerrainFrag = R"(
 
     in vec3 fragment_pos;
     in vec3 surface_normal;
-    flat in vec3 fragment_color;
+    in vec3 fragment_color;
     //in vec2 tex_coord;
 
     uniform vec3 light_color;
