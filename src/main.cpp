@@ -18,7 +18,7 @@
 constexpr auto WINDOW_WIDTH = 1440;
 constexpr auto WINDOW_HEIGHT = 900;
 
-constexpr auto GRID_SIZE = 100;
+constexpr auto GRID_SIZE = 150;
 
 auto camera_settings = CameraSettings(CameraDefault::ZOOM, WINDOW_WIDTH / WINDOW_HEIGHT, 0.1, 1000.0);
 auto camera = Camera<Perspective>(camera_settings, glm::vec3(-50.0f, 60.0f, GRID_SIZE / 2.0f), glm::vec3(0.0, 1.0, 0.0), 0.0, -35.0);

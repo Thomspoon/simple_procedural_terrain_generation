@@ -165,6 +165,7 @@ private:
         auto va_index = 0;
         for(auto x = 0; x < grid_size; x++) {
             for(auto z = 0; z < grid_size; z++) {
+                // TODO: Make the water height more realistic
                 auto height = (height_map[va_index] > 0.35 ? height_map[va_index] : 0.35f);
                 terrain_attributes[va_index].position = glm::vec3(x, height * settings.height_scale, z);
                 va_index++;
