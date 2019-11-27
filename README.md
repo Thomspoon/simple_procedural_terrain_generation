@@ -31,3 +31,7 @@ cmake .. -DCMAKE_CXX_COMPILER=g++-9 -DCMAKE_C_COMPILER=gcc-9
 # Running
 
 The program should be available under the `src` folder in the build directory.
+
+The running application is shown below:
+
+![procedural terrain generation example](https://raw.githubusercontent.com/Thomspoon/simple_procedural_terrain_generation/master/procedural_generation.png)
